@@ -1,0 +1,44 @@
+
+###
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+    "email": "nguyenmanhcuong271002@gmail.com",
+    "password": "123456"
+}
+
+###
+GET https://apisocial-production.up.railway.app/api/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2M2ZmFhNWZlMzE3NGZlNDkwMmFkNSIsImlhdCI6MTY3MTU1Nzk4NywiZXhwIjoxNjcxNjQ0Mzg3fQ.YfIumsgFbCQDTy_pbLd-dlQCrqsrs9sktvM4OnFEO78
+
+
+###
+POST http://localhost:5000/api/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2M2ZmFhNWZlMzE3NGZlNDkwMmFkNSIsImlhdCI6MTY3MDc3MDY4OCwiZXhwIjoxNjcwODU3MDg4fQ.wPR1KS_0NwBEzFzLmK0mjg5-65QPV6_u6nxKm_P6idk
+Content-Type: application/json
+
+{
+    "images" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOsi6eaUIjs1CDpjed_A_lroJgnSuUbtrvkg&usqp=CAU",
+    "content" : "abc"
+}
+
+###
+GET http://localhost:5000/api/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2M2ZmFhNWZlMzE3NGZlNDkwMmFkNSIsImlhdCI6MTY3MTU1Nzk4NywiZXhwIjoxNjcxNjQ0Mzg3fQ.YfIumsgFbCQDTy_pbLd-dlQCrqsrs9sktvM4OnFEO78
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/user_posts/637c6faa5fe3174fe4902ad5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2M2ZmFhNWZlMzE3NGZlNDkwMmFkNSIsImlhdCI6MTY3MTIxMjA2NiwiZXhwIjoxNjcxMjk4NDY2fQ.S4SvYjDgW66h-Q4_4MZ3soIsLTwLui3N53e-4TDrDJM
+Content-Type: application/json
+
+
+###
+PATCH  http://localhost:5000/api/user/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2M2ZmFhNWZlMzE3NGZlNDkwMmFkNSIsImlhdCI6MTY3MTIxMjA2NiwiZXhwIjoxNjcxMjk4NDY2fQ.S4SvYjDgW66h-Q4_4MZ3soIsLTwLui3N53e-4TDrDJM
+Content-Type: application/json 
+
+{
+    "fullname": "Manh Cuongg"
+}
