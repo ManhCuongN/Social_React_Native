@@ -19,10 +19,10 @@ const DataContext = createContext(null);
 export const DataProvider = ({children}) => {
   const {userToken} = useContext(AuthContext);
   const {userInfo} = useContext(AuthContext);
+  const {userFollow, setUserFollow} = useState([]);
  
   const [postState, dispatch] = useReducer(postReducer, {
     posts: [],
-    comments: [],
     isPostLoading: true,
     post: null,
   });
@@ -42,6 +42,8 @@ export const DataProvider = ({children}) => {
     message: '',
     show: false,
   });
+
+
 
   //Show modal
   const [showModalAddPost, setShowModalAddPost] = useState(false);
@@ -95,13 +97,14 @@ export const DataProvider = ({children}) => {
   };
 
   //Delete a post
-  const deletePost = async postId => {
+  const deletePost = async id => {
     try {
-      const response = await axios.delete(`${BASE_URL}/post/${postId}`, {
+      const response = await axios.delete(`${BASE_URL}/post/${id}`, {
         headers: {Authorization: userToken},
       });
       if (response) {
-        dispatch({type: 'DELETE_POST', payload: postId});
+        dispatch({type: 'DELETE_POST', payload: id});
+        console.log("Xóa thành công");
       }
       return response.data;
     } catch (error) {
@@ -184,7 +187,8 @@ export const DataProvider = ({children}) => {
         headers: {Authorization: userToken},
       });
       if(response) {
-        console.log("create comment success");
+        getPost()
+        //dispatch({type: 'POST_LOADED_SUCCESS'})
       }
       
       
@@ -195,6 +199,20 @@ export const DataProvider = ({children}) => {
     }
   }
 
+  //Delete a post
+  const deleteComment = async id => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/comment/${id}`, {
+        headers: {Authorization: userToken},
+      });
+      if (response) {
+        getPost()
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //GET User
   const getUser = async () => {
@@ -232,6 +250,25 @@ export const DataProvider = ({children}) => {
       dispatchUserPosts({type: 'USER_POST_LOADED_FAILED'});
     }
   };
+  
+  //getSuggestionsUser
+  const getSuggestionsUser = async () => {
+    try {
+      const response = await axios.get('https://apisocial-production.up.railway.app/api/suggestionsUser', {
+        headers: {Authorization: userToken},
+      });
+        
+     
+      if (response) {
+        setUserFollow(response.data);
+        console.log("âsas", userFollow);
+      }
+    } catch (error) {
+      console.log("Loix", error);
+      dispatch({type: 'POST_LOADED_FAILED'});
+    }
+  }
+
 
   //Update User
   const updateUser = async (fullname, username, avatar) => {
@@ -255,7 +292,7 @@ export const DataProvider = ({children}) => {
     }
 
   }
-  console.log('Connected', userToken);
+ 
 
   return (
     <DataContext.Provider
@@ -278,7 +315,10 @@ export const DataProvider = ({children}) => {
         findPost,
         likePost,
         unLikePost,
-        commentPost
+        commentPost,
+        deleteComment,
+        getSuggestionsUser,
+        userFollow
       }}>
       {children}
     </DataContext.Provider>

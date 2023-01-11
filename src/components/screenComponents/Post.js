@@ -20,7 +20,8 @@ const Post = ({postInfo}) => {
     deletePost,likePost,unLikePost, commentPost,findPost, setShowModalUpdatePost} =
     useContext(DataContext);
   const deletePostItem = async _id => {
-    await deletePost(_id);
+  
+     await deletePost(_id);
   };
   
   const onUpdatePost = id => {  

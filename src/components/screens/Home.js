@@ -10,7 +10,6 @@ import DataContext from '../../context/DataContext';
 import Modal from '../screenComponents/ModalData';
 import UpdatePost from '../screenComponents/UpdatePost';
 import Btn from '../screenComponents/Btn';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = () => {
@@ -78,8 +77,8 @@ const Home = () => {
       <ScrollView>
         <Stories />
         {
-          posts.map(post => (
-            <Post postInfo={post} />
+          posts.map((post, index) => (
+            <Post key={index}  postInfo={post} />
           )
           
         )

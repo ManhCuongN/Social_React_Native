@@ -30,6 +30,22 @@ export const AuthProvider = ({children}) => {
     setIsLoading(false);
   };
 
+  const signup = async (fullname, username, email, password, gender) => {
+    setIsLoading(true);
+
+    await axios
+      .post(`${BASE_URL}/register`, {
+        fullname, username, email, password, gender
+      })
+      .then(response => {
+         alert("Đăng kí thành công")
+      })
+      .catch(error => {
+        console.log(error.response.request._response);
+      });
+    setIsLoading(false);
+  };
+
   const logout = async () => {
     setUserToken(null);
     setIsLoading(false);
@@ -61,7 +77,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{login, logout, isLoading, userToken, userInfo}}>
+      value={{login, logout, signup, isLoading, userToken, userInfo}}>
       {children}
     </AuthContext.Provider>
   );

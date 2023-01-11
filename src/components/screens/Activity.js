@@ -1,11 +1,20 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
 import {FriendsProfileData} from '../screenComponents/Database';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
+import { BASE_URL } from '../../utils/config';
+import DataContext from '../../context/DataContext';
 
 const Activity = () => {
   const navigation = useNavigation();
+
+  // const {getSuggestionsUser} = useContext(DataContext)
+ 
+  // useEffect(async () => {
+  //  await getSuggestionsUser()
+  // },[]);
   return (
     <View style={{width: '100%', height: '100%', backgroundColor: 'white'}}>
       <Text
@@ -22,22 +31,7 @@ const Activity = () => {
         <Text style={{fontWeight: 'bold'}}>This Week</Text>
         <View style={{flexDirection: 'row', paddingVertical: 10}}>
           {FriendsProfileData.slice(0, 3).map((data, index) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.push('FriendProfile', {
-                    name: data.name,
-                    profileImage: data.profileImage,
-                    follow: data.follow,
-                    post: data.posts,
-                    followers: data.followers,
-                    following: data.following,
-                  })
-                }
-                key={index}>
-                <Text>{data.name},</Text>
-              </TouchableOpacity>
-            );
+            
           })}
           <Text> Started following you</Text>
         </View>
@@ -71,6 +65,8 @@ const Activity = () => {
                     alignItems: 'center',
                     maxWidth: '64%',
                   }}>
+
+
                   <Image
                     source={data.profileImage}
                     style={{
@@ -81,8 +77,7 @@ const Activity = () => {
                     }}
                   />
                   <Text style={{fontSize: 15}}>
-                    <Text style={{fontWeight: 'bold'}}>{data.name}</Text>, who
-                    you might know, is on instagram
+                    <Text style={{fontWeight: 'bold'}}>{data.name}</Text>
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -93,7 +88,7 @@ const Activity = () => {
                       width: '100%',
                       height: 30,
                       borderRadius: 5,
-                      backgroundColor: follow ? null : '#3493D9',
+                      backgroundColor: follow ? null : 'green',
                       borderWidth: follow ? 1 : 0,
                       borderColor: follow ? '#DEDEDE' : null,
                       justifyContent: 'center',

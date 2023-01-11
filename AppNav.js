@@ -15,6 +15,7 @@ import EditProfile from './src/components/screenComponents/EditProfile';
 import Login from './src/components/screens/Login';
 import Signup from './src/components/screens/Signup';
 import AuthStack from './src/components/screens/AuthStack';
+
 import {AuthProvider} from './src/context/AuthContext';
 import AuthContext from './src/context/AuthContext';
 const AppNav = () => {

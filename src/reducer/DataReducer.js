@@ -3,13 +3,10 @@ export const postReducer = (state, action) => {
 
   switch (type) {
     case 'POST_LOADED_SUCCESS':
-      const newCmt = payload.map(post =>
-        post.comments,
-      );
+      
       return {
         ...state,
         posts: payload,
-        comments: newCmt,
         isPostLoading: false,
       };
     case 'POST_LOADED_FAILED':

@@ -39,7 +39,7 @@ export const videoData = [
 
 export const FriendsProfileData = [
   {
-    name: 'Ram_Charan',
+    name: 'manhcuong',
     accountName: 'Ram Charan',
     profileImage: require('../../storage/images/profile4.jpg'),
     posts: 56,
@@ -66,7 +66,7 @@ export const FriendsProfileData = [
     follow: false,
   },
   {
-    name: 'the_real_hero',
+    name: 'manhcuong',
     accountName: 'Ram Charan',
     profileImage: require('../../storage/images/post1.jpg'),
     posts: 123,
@@ -75,7 +75,7 @@ export const FriendsProfileData = [
     follow: false,
   },
   {
-    name: 'the_jerry',
+    name: 'huyle06',
     accountName: 'The Jerry',
     profileImage: require('../../storage/images/post2.jpg'),
     posts: 56,
@@ -84,7 +84,7 @@ export const FriendsProfileData = [
     follow: false,
   },
   {
-    name: 'angry_bird',
+    name: 'manhcuong3',
     accountName: 'Angry Bird',
     profileImage: require('../../storage/images/post3.jpg'),
     posts: 452,

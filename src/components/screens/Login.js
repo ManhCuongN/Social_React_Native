@@ -43,15 +43,14 @@ const Login = props => {
           <Text style={{fontSize: 40, color: darkGreen, fontWeight: 'bold'}}>
             Welcome Back
           </Text>
-          <Text
-            style={{
-              color: 'grey',
-              fontSize: 19,
-              fontWeight: 'bold',
-              marginBottom: 20,
-            }}>
-            Login to your account
-          </Text>
+          <TouchableOpacity
+              onPress={() => props.navigation.navigate('Signup')}>
+              <Text
+                >
+                
+               Do not have an account?Signup
+              </Text>
+            </TouchableOpacity>
           <Field
             placeholder="Email / Username"
             keyboardType={'email-address'}

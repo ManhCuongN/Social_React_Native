@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {View, Text, Touchable, TouchableOpacity} from 'react-native';
 import Background from '../screenComponents/Background';
 import Btn from '../screenComponents/Btn';
 import {darkGreen} from '../screenComponents/Constants';
 import Field from '../screenComponents/Field';
 import {RadioButton} from 'react-native-paper';
+import AuthContext from '../../context/AuthContext';
 
 const Signup = props => {
-  const [checked, setChecked] = React.useState('first');
+  const [checked, setChecked] = React.useState('male');
+  const [fullname, setFullName] = useState(null)
+  const [username, setUsername] = useState(null)
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
+
+  const{signup} = useContext(AuthContext)
+
+  console.log("hel", checked, fullname, username, email, password);
   return (
     <Background>
       <View style={{alignItems: 'center', width: 460}}>
@@ -38,23 +47,34 @@ const Signup = props => {
             paddingTop: 50,
             alignItems: 'center',
           }}>
-          <Field placeholder="Full Name" />
-          <Field placeholder="User Name" />
-          <Field placeholder="Email" keyboardType={'email-address'} />
+          <Field placeholder="Full Name" 
+             value={fullname}
+            onChangeText={text => setFullName(text)} />
+          <Field placeholder="User Name" 
+          value={username}
+          onChangeText={text => setUsername(text)}
+          />
+          <Field placeholder="Email" keyboardType={'email-address'} 
+          value={email}
+          onChangeText={text => setEmail(text)}
+          />
 
-          <Field placeholder="Password" secureTextEntry={true} />
+          <Field placeholder="Password" secureTextEntry={true} 
+          value={password}
+          onChangeText={text => setPassword(text)}
+          />
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text>Male</Text>
             <RadioButton
               value="male"
               status={checked === 'first' ? 'checked' : 'unchecked'}
-              onPress={() => setChecked('first')}
+              onPress={() => setChecked('male')}
             />
             <Text>Female</Text>
             <RadioButton
-              value="second"
+              value="female"
               status={checked === 'second' ? 'checked' : 'unchecked'}
-              onPress={() => setChecked('second')}
+              onPress={() => setChecked('female')}
             />
           </View>
           <Btn
@@ -62,8 +82,7 @@ const Signup = props => {
             bgColor={darkGreen}
             btnLabel="Signup"
             Press={() => {
-              alert('Accoutn created');
-              props.navigation.navigate('Login');
+              signup(fullname, username, email, password, checked);
             }}
           />
           <View
